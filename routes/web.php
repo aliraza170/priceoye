@@ -19,7 +19,7 @@ $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 $this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('auth.password.reset');
 
-$this->get('admin/categories','CategoriesController@index')->name('categories');
+//$this->get('admin/categories','CategoriesController@index')->name('categories');
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/{any}', 'HomeController@index')->where('any', '.*');

@@ -3,6 +3,10 @@ import VueRouter from 'vue-router'
 
 import ChangePassword from '../components/ChangePassword.vue'
 import PermissionsIndex from '../components/cruds/Permissions/Index.vue'
+import CategoriesIndex from '../components/cruds/Categories/Index.vue'
+import CategoriesCreate from '../components/cruds/Categories/Create.vue'
+import CategoriesShow from '../components/cruds/Categories/Show.vue'
+import CategoriesEdit from '../components/cruds/Categories/Edit.vue'
 import PermissionsCreate from '../components/cruds/Permissions/Create.vue'
 import PermissionsShow from '../components/cruds/Permissions/Show.vue'
 import PermissionsEdit from '../components/cruds/Permissions/Edit.vue'
@@ -23,6 +27,10 @@ const routes = [
     { path: '/permissions/create', component: PermissionsCreate, name: 'permissions.create' },
     { path: '/permissions/:id', component: PermissionsShow, name: 'permissions.show' },
     { path: '/permissions/:id/edit', component: PermissionsEdit, name: 'permissions.edit' },
+	{ path: '/categories', component: CategoriesIndex, name: 'categories.index' },
+    { path: '/categories/create', component: CategoriesCreate, name: 'categories.create' },
+    { path: '/categories/:id', component: CategoriesShow, name: 'categories.show' },
+    { path: '/categories/:id/edit', component: CategoriesEdit, name: 'categories.edit' },
     { path: '/roles', component: RolesIndex, name: 'roles.index' },
     { path: '/roles/create', component: RolesCreate, name: 'roles.create' },
     { path: '/roles/:id', component: RolesShow, name: 'roles.show' },

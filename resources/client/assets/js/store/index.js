@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 import Alert from './modules/alert'
 import ChangePassword from './modules/change_password'
 import Rules from './modules/rules'
+import CategoriesIndex from './modules/Categories'
+import CategoriesSingle from './modules/Categories/single'
 import PermissionsIndex from './modules/Permissions'
 import PermissionsSingle from './modules/Permissions/single'
 import RolesIndex from './modules/Roles'
@@ -23,6 +25,8 @@ export default new Vuex.Store({
         PermissionsSingle,
         RolesIndex,
         RolesSingle,
+		CategoriesIndex,
+		CategoriesSingle, 
         UsersIndex,
         UsersSingle,
     },

@@ -35,7 +35,7 @@
                 </ul>
             </li>
 			 <li>
-                <router-link :to="{ name: 'categories' }">
+                <router-link :to="{ name: 'categories.index' }">
                     <i class="fa fa-cubes"></i>
                     <span class="title">Categories</span>
                 </router-link>

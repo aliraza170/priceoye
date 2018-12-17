@@ -22,6 +22,28 @@
                 class="btn btn-danger">
             Delete
         </button>
+		<router-link
+                v-if="$can(xprops.categories_prefix + 'view')"
+                :to="{ name: xprops.route + '.show', params: { id: row.id } }"
+                class="btn btn-primary"
+                >
+            View
+        </router-link>
+
+        <router-link
+                v-if="$can(xprops.categories_prefix + 'edit')"
+                :to="{ name: xprops.route + '.edit', params: { id: row.id } }"
+                class="btn btn-warning">
+            Edit
+        </router-link>
+
+        <button
+                v-if="$can(xprops.categories_prefix + 'delete')"
+                @click="destroyData(row.id)"
+                type="button"
+                class="btn btn-danger">
+            Delete
+        </button>
    </div>
 </template>
 

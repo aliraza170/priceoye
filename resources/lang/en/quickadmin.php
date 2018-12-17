@@ -3,6 +3,8 @@
 return [
 		'user-management' => [		'title' => 'User management',		'fields' => [		],	],
 		'permissions' => [		'title' => 'Permissions',		'fields' => [			'title' => 'Title',		],	],
+	'categories' => [		'title' => 'Categories',		'fields' => [			'name' => 'Title',
+			'permission' => 'Permissions',		],	],
 		'roles' => [		'title' => 'Roles',		'fields' => [			'title' => 'Title',			'permission' => 'Permissions',		],	],
 		'users' => [		'title' => 'Users',		'fields' => [			'name' => 'Name',			'email' => 'Email',			'password' => 'Password',			'role' => 'Role',			'remember-token' => 'Remember token',		],	],
 	'qa_create' => 'Create',
@@ -249,5 +251,5 @@ return [
 	'qa_deselect_all' => 'Deselect all',
 	'qa_team-management' => 'Teams',
 	'qa_team-management-singular' => 'Team',
-	'quickadmin_title' => 'priceoyetask',
+	'quickadmin_title' => 'HelpHazir',
 ];

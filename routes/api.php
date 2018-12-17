@@ -4,6 +4,7 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'A
     Route::post('change-password', 'ChangePasswordController@changePassword')->name('auth.change_password');
     Route::apiResource('rules', 'RulesController', ['only' => ['index']]);
     Route::apiResource('permissions', 'PermissionsController');
+    Route::apiResource('categories', 'CategoriesController');
     Route::apiResource('roles', 'RolesController');
     Route::apiResource('users', 'UsersController');
 });
