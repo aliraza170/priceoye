@@ -251,5 +251,5 @@ return [
 	'qa_deselect_all' => 'Deselect all',
 	'qa_team-management' => 'Teams',
 	'qa_team-management-singular' => 'Team',
-	'quickadmin_title' => 'HelpHazir',
+	'quickadmin_title' => 'PriceOye',
 ];
