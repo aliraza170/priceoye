@@ -14,7 +14,7 @@ class CategoriesController extends Controller
     public function index()
     {
         //
-		exit('all categories are here');
+		//exit('all categories are here');
 		
     }
 

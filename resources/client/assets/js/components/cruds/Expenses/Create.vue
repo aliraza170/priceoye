@@ -1,7 +1,7 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Edit Categories</h1>
+            <h1>Expenses</h1>
         </section>
 
         <section class="content">
@@ -10,7 +10,7 @@
                     <form @submit.prevent="submitForm" novalidate>
                         <div class="box">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Edit</h3>
+                                <h3 class="box-title">Create</h3>
                             </div>
 
                             <div class="box-body">
@@ -21,15 +21,26 @@
 
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="title">Title *</label>
+                                    <label for="title">Amount *</label>
                                     <input
                                             type="text"
                                             class="form-control"
-                                            name="name"
-                                            placeholder="Enter Title *"
-                                            :value="item.name"
+                                            name="amount"
+                                            placeholder="Enter Amount *"
+                                            :value="item.amount"
                                             @input="updateTitle"
                                             >
+                                </div>
+								
+								<div class="form-group">
+                                    <label for="name">Categories *</label>
+                                    <v-select
+                                            name="category_id"
+                                            label="name"
+                                            @input="updateCategories"
+                                            :value="item.id"
+                                            :options="categoriesAll"
+                                            />
                                 </div>
                                 
                             </div>
@@ -59,36 +70,33 @@ export default {
     data() {
         return {
             // Code...
+			
         }
     },
     computed: {
-        ...mapGetters('CategoriesSingle', ['item', 'loading', 'permissionsAll']),
+        ...mapGetters('ExpensesSingle', ['item', 'loading', 'categoriesAll'])
     },
     created() {
-		this.fetchData(this.$route.params.id)
+        this.fetchCategoriesAll()
     },
     destroyed() {
         this.resetState()
     },
-    watch: {
-        "$route.params.id": function() {
-            this.resetState()
-            
-        }
-    },
     methods: {
-        ...mapActions('CategoriesSingle', ['fetchData', 'updateData', 'resetState', 'setTitle', 'setPermission']),
+        ...mapActions('ExpensesSingle', ['storeData', 'resetState', 'setTitle', 'setCategories', 'fetchCategoriesAll']),
         updateTitle(e) {
+			console.log(e);
             this.setTitle(e.target.value)
         },
-        updatePermission(value) {
-            this.setPermission(value)
+        updateCategories(value) {
+			console.log(value.id); 
+            this.setCategories(value)
         },
         submitForm() {
-            this.updateData()
+            this.storeData()
                 .then(() => {
-                    this.$router.push({ name: 'categories.index' })
-                    this.$eventHub.$emit('update-success')
+                    this.$router.push({ name: 'expenses.index' })
+                    this.$eventHub.$emit('create-success')
                 })
                 .catch((error) => {
                     console.error(error)

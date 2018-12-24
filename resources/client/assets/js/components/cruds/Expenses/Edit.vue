@@ -1,7 +1,7 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Edit Categories</h1>
+            <h1>Edit Expenses</h1>
         </section>
 
         <section class="content">
@@ -21,17 +21,26 @@
 
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="title">Title *</label>
+                                    <label for="title">Amount *</label>
                                     <input
                                             type="text"
                                             class="form-control"
-                                            name="name"
-                                            placeholder="Enter Title *"
-                                            :value="item.name"
+                                            name="amount"
+                                            placeholder="Enter Amount *"
+                                            :value="item.amount"
                                             @input="updateTitle"
                                             >
                                 </div>
-                                
+                                <div class="form-group">
+                                    <label for="name">Categories *</label>
+                                    <v-select
+                                            name="name"
+                                            label="name"
+                                            @input="updateCategories"
+                                            :value="item.name"
+                                            :options="categoriesAll"
+                                            />
+                                </div>
                             </div>
 
                             <div class="box-footer">
@@ -62,10 +71,10 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('CategoriesSingle', ['item', 'loading', 'permissionsAll']),
+        ...mapGetters('ExpensesSingle', ['item', 'loading', 'categoriesAll']),
     },
     created() {
-		this.fetchData(this.$route.params.id)
+        this.fetchData(this.$route.params.id)
     },
     destroyed() {
         this.resetState()
@@ -73,21 +82,21 @@ export default {
     watch: {
         "$route.params.id": function() {
             this.resetState()
-            
+            this.fetchData(this.$route.params.id)
         }
     },
     methods: {
-        ...mapActions('CategoriesSingle', ['fetchData', 'updateData', 'resetState', 'setTitle', 'setPermission']),
+        ...mapActions('ExpensesSingle', ['fetchData', 'updateData', 'resetState', 'setTitle', 'setCategories']),
         updateTitle(e) {
             this.setTitle(e.target.value)
         },
-        updatePermission(value) {
-            this.setPermission(value)
+        updateCategories(value) {
+            this.setCategories(value)
         },
         submitForm() {
             this.updateData()
                 .then(() => {
-                    this.$router.push({ name: 'categories.index' })
+                    this.$router.push({ name: 'expenses.index' })
                     this.$eventHub.$emit('update-success')
                 })
                 .catch((error) => {

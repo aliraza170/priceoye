@@ -21,13 +21,13 @@
                 </a>
                 <ul class="treeview-menu">
                     <li v-if="$can('permission_access')">
-                        <router-link :to="{ name: 'permissions.index' }">
+                        <router-link :to="{ name: 'expenses.index' }">
                             <i class="fa fa-list"></i>
                             <span>Expense list</span>
                         </router-link>
                     </li>
                     <li v-if="$can('role_access')">
-                        <router-link :to="{ name: 'roles.index' }">
+                        <router-link :to="{ name: 'expenses.create' }">
                             <i class="fa fa-plus"></i>
                             <span>Create Expense</span>
                         </router-link>

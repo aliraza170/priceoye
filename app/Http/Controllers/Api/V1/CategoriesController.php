@@ -28,7 +28,6 @@ class CategoriesController extends Controller
         if (Gate::denies('categories_view')) {
             return abort(401);
         }
-
         $categories = Categories::findOrFail($id);
 
         return new CategoriesResource($categories);
@@ -50,7 +49,7 @@ class CategoriesController extends Controller
 
     public function update(UpdateCategoriesRequest $request, $id)
     {
-		exit('here');
+		//exit('here');
         if (Gate::denies('categories_edit')) {
             return abort(401);
         }

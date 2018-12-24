@@ -5,6 +5,8 @@ import ChangePassword from './modules/change_password'
 import Rules from './modules/rules'
 import CategoriesIndex from './modules/Categories'
 import CategoriesSingle from './modules/Categories/single'
+import ExpensesIndex from './modules/Expenses'
+import ExpensesSingle from './modules/Expenses/single'
 import PermissionsIndex from './modules/Permissions'
 import PermissionsSingle from './modules/Permissions/single'
 import RolesIndex from './modules/Roles'
@@ -26,7 +28,9 @@ export default new Vuex.Store({
         RolesIndex,
         RolesSingle,
 		CategoriesIndex,
-		CategoriesSingle, 
+		CategoriesSingle,
+		ExpensesIndex,
+		ExpensesSingle, 
         UsersIndex,
         UsersSingle,
     },

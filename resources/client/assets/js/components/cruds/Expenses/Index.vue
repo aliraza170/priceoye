@@ -1,7 +1,7 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Categories</h1>
+            <h1>Expenses</h1>
         </section>
 
         <section class="content">
@@ -15,7 +15,7 @@
                         <div class="box-body">
                             <div class="btn-group">
                                 <router-link
-										v-if="$can(xprops.permission_prefix + 'create')"
+                                        v-if="$can(xprops.permission_prefix + 'create')"
                                         :to="{ name: xprops.route + '.create' }"
                                         class="btn btn-success btn-sm"
                                         >
@@ -66,15 +66,16 @@ export default {
     data() {
         return {
             columns: [
-                { name: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' },
-                { name: 'Title', field: 'name', sortable: true },
-                { name: 'Actions', tdComp: DatatableActions, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }
+                { title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' },
+                { title: 'Amount', field: 'amount', sortable: true },
+                { title: 'Category', field: 'cat_name' , sortable: true},
+                { title: 'Actions', tdComp: DatatableActions, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }
             ],
             query: { sort: 'id', order: 'desc' },
             xprops: {
-                module: 'CategoriesIndex',
-                route: 'categories',
-                permission_prefix: 'categories_'
+                module: 'ExpensesIndex',
+                route: 'expenses',
+                permission_prefix: 'expenses_'
             }
         }
     },
@@ -86,7 +87,7 @@ export default {
         this.resetState()
     },
     computed: {
-        ...mapGetters('CategoriesIndex', ['data', 'total', 'loading', 'relationships']),
+        ...mapGetters('ExpensesIndex', ['data', 'total', 'loading', 'relationships']),
     },
     watch: {
         query: {
@@ -97,7 +98,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('CategoriesIndex', ['fetchData', 'setQuery', 'resetState']),
+        ...mapActions('ExpensesIndex', ['fetchData', 'setQuery', 'resetState']),
     }
 }
 </script>

@@ -2,9 +2,11 @@ function initialState() {
     return {
         item: {
             id: null,
-            name: null,
+            user_id: null,
+            amount: null,
+            name: [],
         },
-        
+        categoriesAll: [],
         
         loading: false,
     }
@@ -13,7 +15,7 @@ function initialState() {
 const getters = {
     item: state => state.item,
     loading: state => state.loading,
-    
+    categoriesAll: state => state.categoriesAll,
     
 }
 
@@ -24,7 +26,7 @@ const actions = {
 
         return new Promise((resolve, reject) => {
             let params = new FormData();
-
+			
             for (let fieldName in state.item) {
                 let fieldValue = state.item[fieldName];
                 if (typeof fieldValue !== 'object') {
@@ -40,9 +42,15 @@ const actions = {
                 }
             }
 
-            
+            if (_.isEmpty(state.item.name)) {
+                params.delete('name')
+            } else {
+                for (let index in state.item.name) {
+                    params.set('name['+index+']', state.item.name[index].id)
+                }
+            }
 
-            axios.post('/api/v1/categories', params)
+            axios.post('/api/v1/expenses', params)
                 .then(response => {
                     commit('resetState')
                     resolve()
@@ -66,7 +74,7 @@ const actions = {
     updateData({ commit, state, dispatch }) {
         commit('setLoading', true)
         dispatch('Alert/resetState', null, { root: true })
-		//return false();
+
         return new Promise((resolve, reject) => {
             let params = new FormData();
             params.set('_method', 'PUT')
@@ -86,9 +94,15 @@ const actions = {
                 }
             }
 
-            
+            if (_.isEmpty(state.item.name)) {
+                params.delete('name')
+            } else {
+                for (let index in state.item.name) {
+                    params.set('name['+index+']', state.item.name[index].id)
+                }
+            }
 
-            axios.post('/api/v1/categories/' + state.item.id, params)
+            axios.post('/api/v1/expenses/' + state.item.id, params)
                 .then(response => {
                     commit('setItem', response.data.data)
                     resolve()
@@ -110,17 +124,24 @@ const actions = {
         })
     },
     fetchData({ commit, dispatch }, id) {
-		console.log('/api/v1/categories/' + id);
-        axios.get('/api/v1/categories/' + id)
+        axios.get('/api/v1/expenses/' + id)
             .then(response => {
                 commit('setItem', response.data.data)
             })
 
-        
+        dispatch('fetchCategoriesAll')
     },
-    
+    fetchCategoriesAll({ commit }) {
+        axios.get('/api/v1/categories')
+            .then(response => {
+                commit('setcategoriesAll', response.data.data)
+            })
+    },
     setTitle({ commit }, value) {
         commit('setTitle', value)
+    },
+    setCategories({ commit }, value) {
+        commit('setCategories', value)
     },
     resetState({ commit }) {
         commit('resetState')
@@ -130,11 +151,18 @@ const actions = {
 const mutations = {
     setItem(state, item) {
         state.item = item
+		state.item.user_id = 1;
     },
     setTitle(state, value) {
-        state.item.name = value
+        state.item.amount = value
+		state.item.user_id = 1;
     },
-    
+    setCategories(state, value) {
+        state.item.category_id = value.id
+    },
+    setcategoriesAll(state, value) {
+        state.categoriesAll = value
+    },
     
     setLoading(state, loading) {
         state.loading = loading

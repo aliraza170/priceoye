@@ -7,6 +7,10 @@ import CategoriesIndex from '../components/cruds/Categories/Index.vue'
 import CategoriesCreate from '../components/cruds/Categories/Create.vue'
 import CategoriesShow from '../components/cruds/Categories/Show.vue'
 import CategoriesEdit from '../components/cruds/Categories/Edit.vue'
+import ExpensesIndex from '../components/cruds/Expenses/Index.vue'
+import ExpensesCreate from '../components/cruds/Expenses/Create.vue'
+import ExpensesShow from '../components/cruds/Expenses/Show.vue'
+import ExpensesEdit from '../components/cruds/Expenses/Edit.vue'
 import PermissionsCreate from '../components/cruds/Permissions/Create.vue'
 import PermissionsShow from '../components/cruds/Permissions/Show.vue'
 import PermissionsEdit from '../components/cruds/Permissions/Edit.vue'
@@ -31,6 +35,10 @@ const routes = [
     { path: '/categories/create', component: CategoriesCreate, name: 'categories.create' },
     { path: '/categories/:id', component: CategoriesShow, name: 'categories.show' },
     { path: '/categories/:id/edit', component: CategoriesEdit, name: 'categories.edit' },
+	{ path: '/expenses', component: ExpensesIndex, name: 'expenses.index' },
+    { path: '/expenses/create', component: ExpensesCreate, name: 'expenses.create' },
+    { path: '/expenses/:id', component: ExpensesShow, name: 'expenses.show' },
+    { path: '/expenses/:id/edit', component: ExpensesEdit, name: 'expenses.edit' },
     { path: '/roles', component: RolesIndex, name: 'roles.index' },
     { path: '/roles/create', component: RolesCreate, name: 'roles.create' },
     { path: '/roles/:id', component: RolesShow, name: 'roles.show' },

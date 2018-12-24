@@ -1,7 +1,7 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Permissions</h1>
+            <h1>Expenses</h1>
         </section>
 
         <section class="content">
@@ -26,9 +26,17 @@
                                             <td>{{ item.id }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Title</th>
-                                            <td>{{ item.name }}</td>
+                                            <th>Amount</th>
+                                            <td>{{ item.amount }}</td>
                                             </tr>
+                                        <tr>
+                                            <th>Categories</th>
+                                            <td>
+                                                <span class="label label-info">
+                                                    {{ item.cat_name }}
+                                                </span>
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -58,7 +66,7 @@ export default {
         this.resetState()
     },
     computed: {
-        ...mapGetters('CategoriesSingle', ['item'])
+        ...mapGetters('ExpensesSingle', ['item'])
     },
     watch: {
         "$route.params.id": function() {
@@ -67,7 +75,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('CategoriesSingle', ['fetchData', 'resetState'])
+        ...mapActions('ExpensesSingle', ['fetchData', 'resetState'])
     }
 }
 </script>
